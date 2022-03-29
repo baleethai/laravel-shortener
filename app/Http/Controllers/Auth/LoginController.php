@@ -21,18 +21,22 @@ class LoginController extends Controller
 
             Auth::guard('member')
                         ->attempt(['email' => $request->email, 'password' => $request->password], true);
-
+            if ( ! Auth::guard()->check()) {
+                return redirect()
+                            ->route('auth.login.index')
+                            ->with('error','Login failed, please try again!');
+            }
             return redirect()
                     ->route('auth.links.index');
 
         } catch (\Exception $e) {
-
             return redirect()
                         ->withInput()
                         ->with('error','Login failed, please try again!')
                         ->back();
         }
     }
+
     public function logout()
     {
         Auth::guard('member')->logout();

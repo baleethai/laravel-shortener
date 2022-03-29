@@ -1,25 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'Login')
 
 @section('content')
-    <div class="row">
-        <h3>Login</h3>
+
         <form action="{{ route('auth.login.store') }}" method="POST">
             @csrf
 
             @include('shared.alert')
 
-            <div class="col-12">
-                Email : <input type="email" name="email" value="{{ old('email') }}">
+            <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+
+            <div class="form-floating mb-3">
+                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <label for="floatingInput">Email</label>
             </div>
-            <div class="col-12">
-                Password : <input type="password" name="password">
+
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingInput" placeholder="Password" required>
+                <label for="floatingInput">Password</label>
             </div>
 
             <div class="col-12">
-                <input type="submit" value="Submit">
+                <input type="submit" class="w-100 btn btn-lg btn-primary" value="Sign in">
             </div>
+
         </form>
-    </div>
+
 @endsection
