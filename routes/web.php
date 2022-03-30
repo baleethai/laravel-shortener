@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\LinkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -29,12 +30,19 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::middleware(['auth:member'])->prefix('auth')->group(function () {
+
     Route::controller(LinkController::class)->group(function () {
         Route::get('/links/delete/{link}', 'delete')->name('auth.links.delete');
         Route::get('/links/create', 'create')->name('auth.links.create');
         Route::post('/links/store', 'store')->name('auth.links.store');
         Route::get('/links', 'index')->name('auth.links.index');
     });
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/', 'index')->name('auth.dashboard.index');
+        Route::post('/', 'update')->name('auth.dashboard.update');
+    });
+
 });
 
 Route::get('/{shortLink}', [ShortLinkController::class, 'index'])->name('shortlink.index');

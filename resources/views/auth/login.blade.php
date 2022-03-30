@@ -12,7 +12,7 @@
             <h1 class="h3 mb-3 fw-normal">Sign in</h1>
 
             <div class="form-floating mb-3">
-                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="{{ old('email') }}" required>
                 <label for="floatingInput">Email</label>
             </div>
 

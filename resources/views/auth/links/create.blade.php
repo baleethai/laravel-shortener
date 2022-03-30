@@ -4,26 +4,22 @@
 
 @section('content')
     <div class="row">
-        <h3>Register</h3>
+
+        <h3>Create link</h3>
+
         <form action="{{ route('auth.links.store') }}" method="POST">
             @csrf
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('shared.alert')
 
-            <div class="col-12">
-                Long URL : <input type="text" name="long_url" value="{{ old('long_url') }}">
+            <div class="mb-3">
+                <label for="long_url" class="form-label">Long URL</label>
+                <input type="text" name="long_url" class="form-control" id="long_url" placeholder="{{ env('APP_URL') }}" value="{{ old('long_url') }}" required>
             </div>
-            <div class="col-12">
-                <input type="submit" value="Submit">
+            <div class="mb-3">
+                <input type="submit" class="btn btn-success mb-3" value="Create Link">
             </div>
+
         </form>
     </div>
 @endsection

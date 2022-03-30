@@ -30,13 +30,13 @@ class LinkController extends Controller
             $link->long_url = $request->long_url;
             $link->short_url = Str::random(6);
             $link->save();
+
             return redirect()
-                    ->route('auth.links.index');
+                    ->route('auth.links.index')
+                    ->with('status', 'Create a link successfully');
+
         } catch (\Exception $e) {
-            return redirect()
-                    ->route('auth.links.create')
-                    ->withErrors($e->getMessage())
-                    ->back();
+            return back()->with('error', $e->getMessage());
         }
     }
 

@@ -18,6 +18,7 @@ class RegisterController extends Controller
     public function store(RegisterStoreRequest $request)
     {
         try {
+
             $member = new Member();
             $member->name = $request->name;
             $member->email = $request->email;
@@ -27,11 +28,12 @@ class RegisterController extends Controller
             Auth::guard('member')
                         ->attempt(['email' => $request->email, 'password' => $request->password], true);
 
-            dd(Auth::guard('member')->user());
+            return redirect()
+                    ->route('auth.links.index');
 
         } catch (\Exception $e) {
             return redirect()
-                    ->withErrors()
+                    ->with('status', 'Can\'t register for an account')
                     ->back();
         }
     }

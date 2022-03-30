@@ -17,11 +17,12 @@ class LoginController extends Controller
 
     public function store(LoginStoreRequest $request)
     {
+
         try {
 
             Auth::guard('member')
                         ->attempt(['email' => $request->email, 'password' => $request->password], true);
-            if ( ! Auth::guard()->check()) {
+            if ( ! Auth::guard('member')->check()) {
                 return redirect()
                             ->route('auth.login.index')
                             ->with('error','Login failed, please try again!');
