@@ -12,7 +12,7 @@ class LinkController extends Controller
 {
     public function index()
     {
-        $links = Link::where('status', true)->paginate();
+        $links = Link::where('status', true)->orderBy('id', 'ASC')->paginate();
         return view('auth.links.index', compact('links'));
     }
 
