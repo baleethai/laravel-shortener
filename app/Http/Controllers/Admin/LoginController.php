@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginStoreRequest;
-use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,25 +11,23 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        return view('admin.login');
     }
 
     public function store(LoginStoreRequest $request)
     {
 
         try {
+            Auth::guard('member')->logout();
+            Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
 
-            Auth::logout();
-
-            Auth::guard('member')
-                        ->attempt(['email' => $request->email, 'password' => $request->password], true);
-            if ( ! Auth::guard('member')->check()) {
+            if ( ! Auth::check()) {
                 return redirect()
-                            ->route('auth.login.index')
+                            ->route('auth.login.admin.index')
                             ->with('error','Login failed, please try again!');
             }
             return redirect()
-                    ->route('auth.links.index');
+                    ->route('auth.admin.dashboard.index');
 
         } catch (\Exception $e) {
             return redirect()
@@ -42,7 +39,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('member')->logout();
+        Auth::logout();
         return redirect()
                 ->route('home.index');
     }

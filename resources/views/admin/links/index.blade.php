@@ -10,16 +10,12 @@
 
         @include('shared.alert')
 
-        <div class="col-12 text-end">
-            <a href="{{ route('auth.links.create') }}">Create Link</a>
-        </div>
-
         <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                         <tr class="table-dark">
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Name</th>
                             <th>Short Url</th>
                             <th>Total Click</th>
@@ -39,7 +35,7 @@
                                 </td>
                                 <td>{{ $link->total_click }}</td>
                                 <td>
-                                    <a href="{{ route('auth.links.delete', [$link]) }}">Hide</a>
+                                    <a href="{{ route('auth.links.delete', [$link]) }}">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
