@@ -10,7 +10,7 @@
 
         @include('shared.alert')
 
-        <div class="col-12 text-end">
+        <div class="col-12 text-end mb-2">
             <a href="{{ route('auth.links.create') }}">Create Link</a>
         </div>
 
