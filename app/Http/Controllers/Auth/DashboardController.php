@@ -14,9 +14,15 @@ class DashboardController extends Controller
 
     public function update(Request $request)
     {
-        $request->user('member')->update(['name' => $request->getScriptName()]);
-        return redirect()
-                ->route('auth.dashboard.index')
-                ->with('status', 'Update successfully');
+        try {
+            $request->user('member')->update(['name' => $request->getScriptName()]);
+            return redirect()
+                    ->route('auth.dashboard.index')
+                    ->with('status', 'Update successfully');
+        } catch (\Exception $e) {
+            return redirect()
+                    ->route('auth.dashboard.index')
+                    ->with('error', $e->getMessage());
+        }
     }
 }
