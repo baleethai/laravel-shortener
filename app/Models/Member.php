@@ -9,6 +9,8 @@ class Member extends Authenticatable
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function links()
     {
         return $this->hasMany(Link::class);
