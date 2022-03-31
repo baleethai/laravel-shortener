@@ -8,9 +8,12 @@
 
         <h3>Links</h3>
 
-        @include('shared.alert')
+
 
         <div class="col-12">
+
+            @include('shared.alert')
+
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -35,7 +38,7 @@
                                 </td>
                                 <td>{{ $link->total_click }}</td>
                                 <td>
-                                    <a href="{{ route('auth.links.delete', [$link]) }}">Delete</a>
+                                    <a href="{{ route('auth.admin.links.delete', [$link]) }}">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

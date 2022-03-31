@@ -16,10 +16,16 @@ class LinkController extends Controller
 
     public function delete(Request $request, Link $link)
     {
-        $link->delete();
+        try {
+            $link->delete();
+            return redirect()
+                    ->route('auth.admin.links.index')
+                    ->with('status', 'Successfully deleted');
+        } catch (\Exception $e) {
+            return redirect()
+                    ->route('auth.admin.links.index')
+                    ->with('error', $e->getMessage());
+        }
 
-        return redirect()
-                ->route('auth.admin.links.index')
-                ->with('status', 'Successfully deleted');
     }
 }
