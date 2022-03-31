@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="list-group-item d-flex">
-        <a href="{{ route('auth.links.index') }}" class="text-decoration-none @if (in_array(Route::currentRouteName(), ['auth.links.index'])) text-success @endif">
+        <a href="{{ route('auth.links.index') }}" class="text-decoration-none @if (in_array(Route::currentRouteName(), ['auth.links.index', 'auth.links.create'])) text-success @endif">
             Link Management
         </a>
     </li>

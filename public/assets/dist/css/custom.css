@@ -4,3 +4,11 @@ html, body {
 a {
     color: #212529;
 }
+.page-item .page-link {
+    color: #6c757d;
+}
+
+.page-item.active .page-link {
+    background-color: #0c4128;
+    border-color: #0c4128;
+}
