@@ -10,9 +10,9 @@ use Illuminate\Support\Str;
 
 class LinkController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $links = Link::where('status', true)->orderBy('id', 'DESC')->paginate();
+        $links = Link::where('member_id', $request->user('member')->id)->where('status', true)->orderBy('id', 'DESC')->paginate();
         return view('auth.links.index', compact('links'));
     }
 
